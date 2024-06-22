@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Persona;
+use App\Http\Requests\CreatePersonaRequest;
 
 class PersonasController extends Controller
 {
@@ -16,18 +17,7 @@ class PersonasController extends Controller
         return view('createPersona');
     }
 
-    public function store(Request $request){
-        $request->validate([
-            'cPerApellido' => 'required',
-            'cPerNombre' => 'required',
-            'cPerDireccion' => 'required',
-            'dPerFechaNac' => 'required|date',
-            'nPerEdad' => 'required|integer',
-            'cPerSexo' => 'required',
-            'nPerSueldo' => 'required|numeric',
-            'cPerEstado' => 'required',
-        ]);
-    
+    public function store(CreatePersonaRequest $request){
         Persona::create([
             'cPerApellido'=> $request->cPerApellido,
             'cPerNombre'=> $request->cPerNombre,
@@ -40,7 +30,7 @@ class PersonasController extends Controller
             'cPerEstado'=> $request->cPerEstado,
             'remember_token' => ' '
         ]);
-    
+
         return redirect()->route('personas.index');
     }
     

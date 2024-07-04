@@ -19,19 +19,51 @@ class PersonasController extends Controller
 
     public function store(CreatePersonaRequest $request){
         Persona::create([
-            'cPerApellido'=> $request->cPerApellido,
-            'cPerNombre'=> $request->cPerNombre,
-            'cPerDireccion'=> $request->cPerDireccion,
-            'dPerFecNac'=> $request->dPerFechaNac,
-            'nPerEdad'=> $request->nPerEdad,
-            'nPerSueldo'=> $request->nPerSueldo,
+            'cPerApellido' => $request->cPerApellido,
+            'cPerNombre' => $request->cPerNombre,
+            'cPerDireccion' => $request->cPerDireccion,
+            'dPerFecNac' => $request->dPerFechaNac,
+            'nPerEdad' => $request->nPerEdad,
+            'nPerSueldo' => $request->nPerSueldo,
             'cPerSexo' => $request->cPerSexo,
             'cPerRnd' => ' ',
-            'cPerEstado'=> $request->cPerEstado,
+            'cPerEstado' => $request->cPerEstado,
             'remember_token' => ' '
         ]);
 
         return redirect()->route('personas.index');
     }
+
+    public function show($nPerCodigo){
+        $persona = Persona::find($nPerCodigo);
+
+
+        return view('showPersona', ['persona' => $persona]);
+    }
+
+    public function edit(Persona $persona){
+        return view('editPersona',[
+            'persona' => $persona
+        ]);
+    }
     
+    public function update(Persona $nPerCodigo, CreatePersonaRequest $request){
+        $nPerCodigo->update([
+            'cPerApellido' => $request->cPerApellido,
+            'cPerNombre' => $request->cPerNombre,
+            'cPerDireccion' => $request->cPerDireccion,
+            'dPerFecNac' => $request->dPerFechaNac,
+            'nPerEdad' => $request->nPerEdad,
+            'nPerSueldo' => $request->nPerSueldo,
+            'cPerSexo' => $request->cPerSexo,
+            'cPerEstado' => $request->cPerEstado,
+        ]);
+        return redirect()->route('personas.show',$nPerCodigo);
+    }
+
+    public function destroy(Persona $persona){
+        $persona->delete();
+        return redirect()->route('personas.index');
+    }
 }
+

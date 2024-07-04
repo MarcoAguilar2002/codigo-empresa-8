@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Persona extends Model
 {
+   use HasFactory;
    protected $guarded =[];
+   // Especificar la clave primaria
+   protected $primaryKey = 'nPerCodigo';
 }

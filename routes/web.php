@@ -17,6 +17,5 @@ Route::patch('personas/{nPerCodigo}', [PersonasController::class, 'update'])->na
 Route::delete('personas/{persona}',[PersonasController::class,'destroy'])->name('personas.destroy');
 
 
-Route::get('contacto', function () {
-    return view('contacto');
-})->name('contacto');
+Route::view('contacto','contacto')->name('contacto');
+Route::post('contacto',[ContactoController::class, 'store']); 

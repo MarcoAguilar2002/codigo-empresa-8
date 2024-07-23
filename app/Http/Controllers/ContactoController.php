@@ -23,6 +23,6 @@ class ContactoController extends Controller
         ]);
 
         Mail::to('marco.ra2002@gmail.com')->send(new MensajeRecibido($mensaje));
-        return 'Mensaje Enviado';
+        return back()->white('estado','Gracias por ponerte en contacto, te responderemos lo más pronto posible');
     }
 }

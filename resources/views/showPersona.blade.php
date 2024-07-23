@@ -3,6 +3,7 @@
 @section('title', 'Detalles de Persona')
 
 @section('content')
+@auth
 <div class="container mt-4">
     <h2>Detalles de Persona</h2>
     <div class="card mt-3">
@@ -61,7 +62,9 @@
             </div>
             <div class="text-center">
                 <a href="{{ route('personas.index') }}" class="btn btn-secondary">Volver a la lista</a>
+                @auth
                 <a href="{{route('personas.edit', $persona)}}" class="btn btn-warning"><i class="bi bi-pencil"></i> Editar</a>
+                @endauth
                 <form action="{{route('personas.destroy',$persona)}}" method="POST" class="d-inline">
                     @csrf @method('DELETE')
                     <button type="submit" class="btn btn-danger"><i class="bi bi-archive"></i> Eliminar</button>
@@ -70,4 +73,5 @@
         </div>
     </div>
 </div>
+@endauth
 @endsection

@@ -8,6 +8,10 @@ use App\Http\Requests\CreatePersonaRequest;
 
 class PersonasController extends Controller
 {
+    public function __construc(){
+        $this->middleware('auth')->except('index','show');
+    }
+
     public function index(){
         $personas = Persona::get();
         return view('personas', compact('personas'));
@@ -31,7 +35,7 @@ class PersonasController extends Controller
             'remember_token' => ' '
         ]);
 
-        return redirect()->route('personas.index');
+        return redirect()->route('personas.index')->with('estado','Persona creada exitosamente');
     }
 
     public function show($nPerCodigo){
@@ -58,12 +62,12 @@ class PersonasController extends Controller
             'cPerSexo' => $request->cPerSexo,
             'cPerEstado' => $request->cPerEstado,
         ]);
-        return redirect()->route('personas.show',$nPerCodigo);
+        return redirect()->route('personas.show',$nPerCodigo)->with('estado', 'Datos de la persona actualizada');
     }
 
     public function destroy(Persona $persona){
         $persona->delete();
-        return redirect()->route('personas.index');
+        return redirect()->route('personas.index')->with('estado','Persona eliminada correctamente');
     }
 }
 

@@ -19,6 +19,7 @@
 <body>
     
     @include('layouts._partials.nav')
+    @include('layouts._partials.sesion-estado')
     <div class="container">
         @yield('content')
     </div>

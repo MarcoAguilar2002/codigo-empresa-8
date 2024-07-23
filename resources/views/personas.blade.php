@@ -6,7 +6,9 @@
 
 <div class="d-flex justify-content-between align-items-center">
     <h1 class="mt-4">Lista de Personas</h1>
+    @auth
     <a class="btn btn-primary" href="{{ route('personas.create') }}" role="button"><i class="bi bi-person-plus-fill"></i> Agregar Persona</a>
+    @endauth
 </div>
 
 <table class="table table-bordered table-striped mt-4">

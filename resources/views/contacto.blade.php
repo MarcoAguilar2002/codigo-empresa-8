@@ -3,9 +3,14 @@
 @section('title', 'Contacto')
 
 @section('content')
+
 <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
     <div class="card p-4" style="width: 100%; max-width: 600px;">
         <h2 class="card-title text-center">Contáctanos</h2>
+
+        @if(session('estado'))
+            {{session('estado')}}
+        @else
         <form action="{{ route('contacto') }}" method="POST">
             @csrf
             <div class="form-group">
@@ -33,6 +38,7 @@
                 <button type="reset" class="btn btn-secondary">Cancelar</button>
             </div>
         </form>
+        @endif
     </div>
 </div>
 @endsection

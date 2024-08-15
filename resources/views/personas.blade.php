@@ -11,6 +11,20 @@
     @endauth
 </div>
 
+<div class="mt-3">
+    <form method="GET" action="{{ route('personas.index') }}">
+        <div class="row">
+            <div class="col-md-4">
+                <select name="estado" class="form-control" onchange="this.form.submit()">
+                    <option value="todos" {{ $estado == 'todos' ? 'selected' : '' }}>Todos</option>
+                    <option value="activo" {{ $estado == 'activo' ? 'selected' : '' }}>Activos</option>
+                    <option value="inactivo" {{ $estado == 'inactivo' ? 'selected' : '' }}>Inactivos</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+
 <table class="table table-bordered table-striped mt-4">
     <thead class="table-primary">
         <tr>

@@ -9,7 +9,7 @@
 
 <div class="card mt-3">
     <div class="card-body">
-        <form action="{{ route('personas.store') }}" method="POST">
+        <form action="{{ route('personas.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="cPerApellido">Apellido</label>
@@ -60,6 +60,13 @@
                 </select>
                 <span class="text-danger">{{$errors->first('cPerEstado')}}</span>
             </div>
+
+            <div class="form-group">
+                <label for="image">Imagen</label>
+                <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="image">
+                <span class="text-danger">{{ $errors->first('image') }}</span>
+            </div>
+
             <div class="text-center mt-3">
                 <button type="submit" class="btn btn-primary">Registrar</button>
             </div>

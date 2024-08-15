@@ -8,6 +8,18 @@
     <h2>Detalles de Persona</h2>
     <div class="card mt-3">
         <div class="card-body">
+
+            <!-- Mostrar imagen de la Persona -->
+            <div class="text-center mb-4">
+                @if($persona->image)
+                    <img src="{{ asset('storage/' . $persona->image) }}" alt="Imagen de {{ $persona->cPerNombre }}" class="img-fluid rounded" style="max-width: 200px;">
+                @else
+                    <p>No hay imagen disponible</p>
+                @endif
+            </div>
+
+
+            
             <div class="row mb-3">
                 <div class="col-md-4"><strong>Código:</strong></div>
                 <div class="col-md-8">{{ $persona->nPerCodigo }}</div>
@@ -60,6 +72,8 @@
                 <div class="col-md-4"><strong>Actualizado:</strong></div>
                 <div class="col-md-8">{{ $persona->updated_at }}</div>
             </div>
+
+     
             <div class="text-center">
                 <a href="{{ route('personas.index') }}" class="btn btn-secondary">Volver a la lista</a>
                 @auth
